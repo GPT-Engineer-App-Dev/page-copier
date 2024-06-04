@@ -1,17 +1,48 @@
-// Update this page (the content is just a fallback if you fail and example)
-// Use chakra-ui
-import { Container, Text, VStack } from "@chakra-ui/react";
+import { Container, Input, VStack, HStack, Box, Image, Text, Flex, IconButton } from "@chakra-ui/react";
+import { FaSearch, FaMicrophone, FaCamera } from "react-icons/fa";
 
-// Example of using react-icons
-// import { FaRocket } from "react-icons/fa";
-// <IconButton aria-label="Add" icon={<FaRocket />} size="lg" />; // IconButton would also have to be imported from chakra
+const categories = ["Anime", "Background", "Art", "Drawing", "Pokemon", "Car", "Logo", "Galaxy", "Dragon", "Wolf", "Girl"];
+
+const images = [
+  { src: "https://via.placeholder.com/150", title: "Cool Wallpapers", source: "Adobe Stock" },
+  { src: "https://via.placeholder.com/150", title: "Cool av Kidz Collection", source: "Posterlounge" },
+  { src: "https://via.placeholder.com/150", title: "Cool Wallpapers", source: "Adobe Stock" },
+  { src: "https://via.placeholder.com/150", title: "Konstnärliga illustrationer", source: "Europosters.se" },
+  { src: "https://via.placeholder.com/150", title: "Super Cool Wallpaper", source: "Wallpapers.com" },
+  { src: "https://via.placeholder.com/150", title: "Super Cool Wallpaper", source: "Wallpapers.com" },
+  { src: "https://via.placeholder.com/150", title: "Cool Wallpapers", source: "Adobe Stock" },
+  { src: "https://via.placeholder.com/150", title: "Cool Cat with sunglasses", source: "Europosters.se" },
+  { src: "https://via.placeholder.com/150", title: "Cool Wallpapers", source: "Adobe Stock" },
+  { src: "https://via.placeholder.com/150", title: "Cool Background", source: "Pngtree" },
+  { src: "https://via.placeholder.com/150", title: "Cool iPhone 11 Wallpaper", source: "Pinterest" },
+];
 
 const Index = () => {
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4}>
-        <Text fontSize="2xl">Your Blank Canvas</Text>
-        <Text>Chat with the agent to start making edits.</Text>
+    <Container maxW="container.xl" p={4}>
+      <VStack spacing={4} align="stretch">
+        <HStack spacing={2} justify="center">
+          <Input placeholder="Search" size="lg" />
+          <IconButton aria-label="Search" icon={<FaSearch />} size="lg" />
+          <IconButton aria-label="Voice Search" icon={<FaMicrophone />} size="lg" />
+          <IconButton aria-label="Image Search" icon={<FaCamera />} size="lg" />
+        </HStack>
+        <HStack spacing={4} overflowX="auto" py={2}>
+          {categories.map((category) => (
+            <Box key={category} p={2} bg="gray.200" borderRadius="md" whiteSpace="nowrap">
+              {category}
+            </Box>
+          ))}
+        </HStack>
+        <Flex wrap="wrap" justify="space-between">
+          {images.map((image, index) => (
+            <Box key={index} p={2} width={["100%", "48%", "31%"]} mb={4}>
+              <Image src={image.src} alt={image.title} borderRadius="md" />
+              <Text fontSize="sm" color="gray.500">{image.source}</Text>
+              <Text fontSize="md">{image.title}</Text>
+            </Box>
+          ))}
+        </Flex>
       </VStack>
     </Container>
   );
